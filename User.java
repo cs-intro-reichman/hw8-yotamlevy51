@@ -62,7 +62,7 @@
     public boolean addFollowee(String name) {
         //// Replace the following statement with your code
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
-        
+
         if (follows(name) || fCount == maxfCount) {
             return false;
         }
@@ -75,17 +75,21 @@
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
         //// Replace the following statement with your code
-        if (!follows(name)) {
+        if (name == null || !follows(name)) {
             return false;
         }
 
-        int place = 0;
+        int place = -1;
 
         for (int i = 0; i < fCount; i++) {
             if (this.follows[i].equals(name)) {
             place = i;
             break;
             }
+        }
+
+        if (place == -1) {
+            return false;
         }
 
         for (int i = place; i < fCount - 1; i++) {

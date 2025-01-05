@@ -145,15 +145,21 @@ public class Network {
     //// Replace the following statement with your code
     String ans = "Network:\n";
 
-     for (int i = 0; i < userCount; i++) {
-     ans += users[i].getName() + " -> ";
+    if (userCount == 0) {
+        return ans;
+    }
 
-         for (int j = 0; j < users[i].getfCount(); j++) {
-         ans += users[i].getfFollows()[j] + " "; 
-         }
+    for (int i = 0; i < userCount; i++) {
+        ans += users[i].getName() + " -> ";
 
-     ans += "\n";
-     }
+        if (users[i].getfCount() > 0) {
+            for (int j = 0; j < users[i].getfCount(); j++) {
+                ans += users[i].getfFollows()[j] + " ";
+            }
+        }
+
+        ans += "\n";
+    }
 
  return ans;
  }
