@@ -68,6 +68,10 @@ public class Network {
      if (getUser(name1) == null || getUser(name2) == null) {
          return false;
      }
+
+     if (name1.equals(name2)) {
+        return false;
+    }
      
      boolean success = getUser(name1).addFollowee(name2);
 
@@ -82,14 +86,19 @@ public class Network {
          return null;
      }
 
-     int mostMutual = 0;
+     int mostMutual = -1;
      String theChoosen = "";
 
      for (int i = 0; i < userCount; i++) {
-         if (getUser(name).countMutual(users[i]) > mostMutual) {
+
+        if (getUser(name).getName().equals(users[i].getName())) {
+            continue;
+        } 
+
+        if (getUser(name).countMutual(users[i]) > mostMutual) {
              mostMutual = getUser(name).countMutual(users[i]);
              theChoosen = users[i].getName();
-         }
+        }
      }
 
      return theChoosen;
@@ -99,6 +108,10 @@ public class Network {
   *  The user who appears the most in the follow lists of all the users. */
  public String mostPopularUser() {
      //// Replace the following statement with your code
+     if (userCount == 0) {
+        return null;
+    }
+
      String mostPopular = "";
      int maxCount = 0;
     
@@ -130,7 +143,7 @@ public class Network {
  // Returns a textual description of all the users in this network, and who they follow.
  public String toString() {
     //// Replace the following statement with your code
-    String ans = "";
+    String ans = "Network:\n";
 
      for (int i = 0; i < userCount; i++) {
      ans += users[i].getName() + " -> ";
