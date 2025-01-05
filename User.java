@@ -97,7 +97,7 @@
     /** Counts the number of users that both this user and the other user follow.
     /*  Notice: This is the size of the intersection of the two follows lists. */
     public int countMutual(User other) {
-         //// Replace the following statement with your code
+
          int mutualFollow = 0;
 
          for (int i = 0; i < this.fCount; i++) {
